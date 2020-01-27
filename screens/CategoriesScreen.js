@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 
 const CategoriesScreen = () => {
   return (
-    <View>
+    <View style={styles.screen}>
       <Text>Categories Screen!</Text>
     </View>
   );  
