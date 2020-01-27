@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import CategoriesScreen from './CategoriesScreen';
+import COLORS from '../constants/colors';
 
 const CategoryMealsScreen = (props) => {
   const {navigation} = props;
@@ -22,6 +23,18 @@ const CategoryMealsScreen = (props) => {
     </View>
   );
 };
+
+CategoryMealsScreen.navigationOptions = {
+  title:'Meals', 
+  headerStyle: {
+    backgroundColor: COLORS.primaryColor,    
+  }, 
+  headerTintColor: 'white',
+  headerTitleStyle: {
+    fontSize: 28,
+    fontFamily: 'OpenSans-Bold'
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {

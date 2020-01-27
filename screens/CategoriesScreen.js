@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { CATEGORIES } from '../data/dummy-data';
+import COLORS from '../constants/colors';
 
 const renderListItem = (props, itemData) => {
   return (
@@ -21,9 +22,8 @@ const renderListItem = (props, itemData) => {
 }
 
 const CategoriesScreen = (props) => {  
-  console.log(CATEGORIES);
   return (
-    <View style={styles.screen}>
+    <View style={styles.screen}>      
       <FlatList numColumns={2}
         data={CATEGORIES}
         keyExtractor={(item, index) => item.id}
@@ -33,6 +33,18 @@ const CategoriesScreen = (props) => {
     </View>       
   );  
 };
+
+CategoriesScreen.navigationOptions = {
+  title:'Meals Category', 
+  headerStyle: {
+    backgroundColor: COLORS.primaryColor,    
+  }, 
+  headerTintColor: 'white',
+  headerTitleStyle: {
+    fontSize: 28,
+    fontFamily: 'OpenSans-Bold'
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {
