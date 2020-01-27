@@ -24,15 +24,17 @@ const CategoryMealsScreen = (props) => {
   );
 };
 
-CategoryMealsScreen.navigationOptions = {
-  title:'Meals', 
-  headerStyle: {
-    backgroundColor: COLORS.primaryColor,    
-  }, 
-  headerTintColor: 'white',
-  headerTitleStyle: {
-    fontSize: 28,
-    fontFamily: 'OpenSans-Bold'
+CategoryMealsScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: navigation.getParam('title', 'Meals'),
+    headerStyle: {
+      backgroundColor: COLORS.primaryColor,
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontSize: 28,
+      fontFamily: 'OpenSans-Bold'
+    }
   }
 }
 
