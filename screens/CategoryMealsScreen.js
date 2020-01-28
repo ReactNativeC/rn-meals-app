@@ -7,10 +7,10 @@ const CategoryMealsScreen = (props) => {
   const {navigation} = props;
 
   return (
-    <View style={{...styles.screen, backgroundColor: navigation.getParam('color','#fff')}}>      
+    <View style={styles.screen}>      
       <Text>{navigation.getParam('title', 'No Title')}</Text>
       <Text>{navigation.getParam('color', 'No Color')}</Text>
-      <Text>{navigation.getParam('id', 'No id')}</Text>
+      <Text>{navigation.getParam('catId', 'No id')}</Text>
       <Button title='Go to Meal Details' onPress={() => {
         props.navigation.navigate('MealDetails');
       }} />      
@@ -26,15 +26,7 @@ const CategoryMealsScreen = (props) => {
 
 CategoryMealsScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: navigation.getParam('title', 'Meals'),
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
-    },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-    headerTitleStyle: {
-      fontSize: 28,
-      fontFamily: 'OpenSans-Bold'
-    }
+    title: navigation.getParam('title', 'Meals'),   
   }
 }
 

@@ -38,11 +38,7 @@ const CategoriesScreen = (props) => {
 };
 
 CategoriesScreen.navigationOptions = {
-  title: 'Meal Categories', 
-  headerStyle: {
-    backgroundColor: Platform.OS === 'android'? Colors.primaryColor : '',     
-  }, 
-  headerTintColor: Platform.OS === 'android'? 'white' : Colors.primaryColor,
+  title: 'Meal Categories',
 }
 
 const styles = StyleSheet.create({
@@ -64,7 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-
   }, 
   title: {
     fontFamily: 'OpenSans-Bold', 
