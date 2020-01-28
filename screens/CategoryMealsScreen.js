@@ -2,15 +2,19 @@ import React from 'react';
 import { Text, View, StyleSheet, Button, Platform } from 'react-native';
 import CategoriesScreen from './CategoriesScreen';
 import Colors from '../constants/colors';
+import { CATEGORIES } from '../data/dummy-data';
+
 
 const CategoryMealsScreen = (props) => {
   const {navigation} = props;
+  const catId = navigation.getParam('categoryId');
+  const selectedCategory = CATEGORIES.find(category => category.id === catId);
 
   return (
     <View style={styles.screen}>      
-      <Text>{navigation.getParam('title', 'No Title')}</Text>
-      <Text>{navigation.getParam('color', 'No Color')}</Text>
-      <Text>{navigation.getParam('catId', 'No id')}</Text>
+      <Text>{selectedCategory.title}</Text>
+      <Text>{selectedCategory.color}</Text>
+      <Text>{selectedCategory.catId}</Text>
       <Button title='Go to Meal Details' onPress={() => {
         props.navigation.navigate('MealDetails');
       }} />      
@@ -25,8 +29,11 @@ const CategoryMealsScreen = (props) => {
 };
 
 CategoryMealsScreen.navigationOptions = ({ navigation }) => {
+  const catId = navigation.getParam('categoryId');
+  selectedCategory = CATEGORIES.find(category => category.id == catId);
+
   return {
-    title: navigation.getParam('title', 'Meals'),   
+    title: selectedCategory.title,
   }
 }
 

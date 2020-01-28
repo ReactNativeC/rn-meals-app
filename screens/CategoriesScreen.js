@@ -9,9 +9,7 @@ const renderListItem = (props, itemData) => {
   return (
     <TouchableOpacity onPress={() => {
       props.navigation.navigate('CategoryMeals', {
-        catId : itemData.item.id, 
-        title : itemData.item.title,
-        color : itemData.item.color
+        categoryId : itemData.item.id
       });
     }}>
       <Card>
