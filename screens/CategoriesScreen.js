@@ -2,23 +2,18 @@ import React from 'react';
 import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity, Platform } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { CATEGORIES } from '../data/dummy-data';
-import Colors from '../constants/colors';
-import Card from '../components/card';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 const renderListItem = (props, itemData) => {
   return (
-    <TouchableOpacity onPress={() => {
-      props.navigation.navigate('CategoryMeals', {
-        categoryId : itemData.item.id
-      });
-    }}>
-      <Card>
-        <View style={{ ...styles.listItem, backgroundColor: itemData.item.color }}>
-          <Text style={styles.title}>{itemData.item.title}</Text>
-        </View>
-      </Card>
-    </TouchableOpacity>
-    
+    <CategoryGridTile
+      title={itemData.item.title}
+      color={itemData.item.color}
+      onPress={() => {
+        props.navigation.navigate('CategoryMeals', {
+          categoryId: itemData.item.id
+        })
+      }} />      
   );
 }
 
@@ -43,27 +38,11 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1, 
     justifyContent: 'center',
-    alignItems: 'center',
-   
+    alignItems: 'center',   
   }, 
   list: {
     marginTop: 30,
   },
-  listItem: {   
-    margin: 10, 
-    borderColor: '#ccc',
-    borderWidth: 1,
-    width: Dimensions.get('window').width /2 - 30,
-    height: Dimensions.get('window').width /2 - 30,      
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-  }, 
-  title: {
-    fontFamily: 'OpenSans-Bold', 
-    fontSize: 18,
-    color:'white',
-  }
 });
 
 export default CategoriesScreen;
