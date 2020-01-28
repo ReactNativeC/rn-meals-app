@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button, Dimensions, TouchableOpacity, Platform } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { CATEGORIES } from '../data/dummy-data';
-import COLORS from '../constants/colors';
+import Colors from '../constants/colors';
+import Card from '../components/card';
 
 const renderListItem = (props, itemData) => {
   return (
@@ -13,9 +14,11 @@ const renderListItem = (props, itemData) => {
         color : itemData.item.color
       });
     }}>
-      <View style={{...styles.listItem, backgroundColor:itemData.item.color}}>
-        <Text style={styles.title}>{itemData.item.title}</Text>
-      </View>
+      <Card>
+        <View style={{ ...styles.listItem, backgroundColor: itemData.item.color }}>
+          <Text style={styles.title}>{itemData.item.title}</Text>
+        </View>
+      </Card>
     </TouchableOpacity>
     
   );
@@ -35,15 +38,11 @@ const CategoriesScreen = (props) => {
 };
 
 CategoriesScreen.navigationOptions = {
-  title:'Meals Category', 
+  title: 'Meal Categories', 
   headerStyle: {
-    backgroundColor: COLORS.primaryColor,    
+    backgroundColor: Platform.OS === 'android'? Colors.primaryColor : '',     
   }, 
-  headerTintColor: 'white',
-  headerTitleStyle: {
-    fontSize: 28,
-    fontFamily: 'OpenSans-Bold'
-  }
+  headerTintColor: Platform.OS === 'android'? 'white' : Colors.primaryColor,
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+   
   }, 
   list: {
     marginTop: 30,
@@ -64,6 +63,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width /2 - 30,      
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 50,
+
   }, 
   title: {
     fontFamily: 'OpenSans-Bold', 
