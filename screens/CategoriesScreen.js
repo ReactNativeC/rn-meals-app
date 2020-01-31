@@ -4,7 +4,6 @@ import { FlatList } from 'react-native-gesture-handler';
 import { CATEGORIES } from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
 
-
 const renderListItem = (props, itemData) => {
   return (
     <CategoryGridTile
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',   
+
   }, 
   list: {
     marginTop: 30,
