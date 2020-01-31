@@ -35,6 +35,7 @@ const CategoryMealsScreen = (props) => {
         keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}   
         style={styles.list}     
+        showsVerticalScrollIndicator={false}
       />   
   );
 };

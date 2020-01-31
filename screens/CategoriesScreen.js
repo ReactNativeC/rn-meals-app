@@ -25,6 +25,7 @@ const CategoriesScreen = (props) => {
         keyExtractor={(item, index) => item.id}
         renderItem={renderListItem.bind(this, props)}
         style={styles.list}
+        showsVerticalScrollIndicator={false}
       />
     </View>       
   );  

@@ -12,7 +12,7 @@ const MealsDetailsScreen = (props) => {
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   
   return (
-    <ScrollView style={styles.screen}>
+    <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: selectedMeal.imageUrl }}

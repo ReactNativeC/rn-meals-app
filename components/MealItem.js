@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, View, StyleSheet, Dimensions, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ImageBackground, Platform } from 'react-native';
 import { WorldAlignment } from 'expo/build/AR';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import globalStyles from '../constants/global-styles';
 
 const MealItem = (props) => {
-  return (
-    <TouchableOpacity onPress={() => { props.onMealSelect(props.meal.id)}}>
+  let TouchComponent = TouchableOpacity;
+  
+  if(Platform.OS === 'android' && Platform.Version >= 21)
+    TouchComponent = TouchableNativeFeedback;
+    
+  return (    
+    <TouchComponent onPress={() => { props.onMealSelect(props.meal.id)}}>
       <View style={styles.mealItem}>
         <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
           <ImageBackground style={styles.bgImage} source={{ uri: props.meal.imageUrl }}>
@@ -21,7 +26,7 @@ const MealItem = (props) => {
           <Text style={globalStyles.bodyText}>{props.meal.affordability}</Text>
         </View>
       </View>
-    </TouchableOpacity> 
+    </TouchComponent> 
   );
 };
 
