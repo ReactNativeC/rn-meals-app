@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Dimensions, ImageBackground } from 'react-native';
 import { WorldAlignment } from 'expo/build/AR';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import globalStyles from '../constants/global-styles';
 
 const MealItem = (props) => {
   return (
@@ -15,9 +16,9 @@ const MealItem = (props) => {
           </ImageBackground>
         </View>
         <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-          <Text>{props.meal.duration}m</Text>
-          <Text>{props.meal.complexity}</Text>
-          <Text>{props.meal.affordability}</Text>
+          <Text style={globalStyles.bodyText}>{props.meal.duration}m</Text>
+          <Text style={globalStyles.bodyText}>{props.meal.complexity}</Text>
+          <Text style={globalStyles.bodyText}>{props.meal.affordability}</Text>
         </View>
       </View>
     </TouchableOpacity> 
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',         
     alignItems: 'center',  
     paddingHorizontal: 10,    
-  }
+  }, 
 });
 
 export default MealItem;
