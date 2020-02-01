@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, View, StyleSheet, Image, Dimensions} from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, Button} from 'react-native';
 import { MEALS } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 import COLORS from '../constants/colors';
@@ -34,6 +34,14 @@ const MealsDetailsScreen = (props) => {
 MealsDetailsScreen.navigationOptions = ({navigation}) => {
   return {
     title: 'Meal Details',
+    headerBackTitle: 'Back',
+    headerRight: () => (
+      <Button 
+        title="Info"  
+        onPress={() => alert('this is info button!')}
+        color='red'
+      />
+    ),
   }
 }
 

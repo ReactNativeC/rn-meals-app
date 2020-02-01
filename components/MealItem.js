@@ -9,7 +9,7 @@ const MealItem = (props) => {
   
   if(Platform.OS === 'android' && Platform.Version >= 21)
     TouchComponent = TouchableNativeFeedback;
-    
+
   return (    
     <TouchComponent onPress={() => { props.onMealSelect(props.meal.id)}}>
       <View style={styles.mealItem}>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: 200,
     margin: 10,
     backgroundColor: '#e6e6fa',                        
-    borderRadius: 20,
+    borderRadius: 15,
     overflow: 'hidden'    
   }, 
   mealRow: {    
@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   mealHeader: {
-    height: '90%',    
+    height: '85%',    
   },  
   mealDetail: {
-    height: '10%', 
-    paddingHorizontal: 10,       
+    height: '15%', 
+    paddingHorizontal: 10,  
+    alignItems: 'center'     
   }, 
   bgImage: {
     width: '100%',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   }, 
   title: {
     fontFamily: 'OpenSans-Bold',
-    fontSize: 22,
+    fontSize: 20,
     color: 'white'    
   }, 
   titleContainer: {
