@@ -1,12 +1,11 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import COLORS from '../constants/colors';
-import GLOBALSTYLES from '../constants/global-styles';
 import globalStyles from '../constants/global-styles';
 
 const MealSection = (props) => {
   return (
-    <View style={{...props.style}}>
+    <View style={{ ...props.style }}>
       <Text style={styles.subtitle}>{props.headerCaption}</Text>
       {
         props.data.map((item, index) => {
@@ -24,12 +23,12 @@ const MealSection = (props) => {
 
 const styles = StyleSheet.create({
   stepContainer: {
-    flexDirection: 'row',        
-    justifyContent: 'flex-start', 
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     margin: 5,
-  }, 
+  },
   subtitle: {
-    fontFamily: 'OpenSans-Bold', 
+    fontFamily: 'OpenSans-Bold',
     fontSize: 18,
     marginBottom: 10,
     color: COLORS.secondaryColor
