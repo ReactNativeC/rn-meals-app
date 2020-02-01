@@ -5,6 +5,8 @@ import { MEALS } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 import COLORS from '../constants/colors';
 import MealSection from '../components/MealSection';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/HeaderButton';
 
 const MealsDetailsScreen = (props) => {
   const {navigation} = props;
@@ -35,13 +37,10 @@ MealsDetailsScreen.navigationOptions = ({navigation}) => {
   return {
     title: 'Meal Details',
     headerBackTitle: 'Back',
-    headerRight: () => (
-      <Button 
-        title="Info"  
-        onPress={() => alert('this is info button!')}
-        color='red'
-      />
-    ),
+    headerRight: 
+      <HeaderButtons HeaderButtonComponent={HeaderButton}> 
+        <Item title='star' iconName='ios-star' onPress={()=>{}}/>     
+      </HeaderButtons>
   }
 }
 
