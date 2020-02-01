@@ -1,11 +1,13 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator, tabBarIcon } from 'react-navigation-tabs';
 import CategoriesScreen  from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealsDetailsScreen from '../screens/MealsDetailsScreen';
 import Colors from '../constants/colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import { Ionicons } from '@expo/vector-icons';
 
 const MealsNavigator = createStackNavigator({  
   Categories: CategoriesScreen,
@@ -29,8 +31,32 @@ const MealsNavigator = createStackNavigator({
 });
 
 const MealsFavoritesTabNavigator = createBottomTabNavigator({
-  Meals: MealsNavigator, 
-  Favorites: FavoritesScreen
-});
+  Home: { 
+    screen: MealsNavigator,    
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="ios-restaurant" size={25} color={tabBarInfo.tintColor} />;
+      }
+    }     
+  },
+  Favorites: {
+    screen: FavoritesScreen,
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="ios-star" size={25} color={tabBarInfo.tintColor} />
+      }
+    }
+  }
+}, 
+{ 
+  tabBarOptions: {
+    activeTintColor: Colors.secondaryColor,
+    labelStyle: {    
+      fontFamily: 'OpenSans',               
+    },    
+  },
+
+}
+);
 
 export default createAppContainer(MealsFavoritesTabNavigator);
