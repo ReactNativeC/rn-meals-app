@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   listItem: {       
     margin: 10, 
     borderColor: '#ccc',
-    overflow: 'hidden',
+    overflow: Platform.OS == 'android' && Platform.Version >=21 ? 'hidden' : 'visible',
+    elevation: 10,
     borderRadius: 35,
   }, 
   container: {
