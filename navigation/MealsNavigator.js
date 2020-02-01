@@ -27,17 +27,17 @@ const MealsNavigator = createStackNavigator({
       fontSize: 24,
       fontFamily: 'OpenSans-Bold'
     }
+  }, 
+  navigationOptions: {
+    tabBarIcon: (tabBarInfo) => {
+      return <Ionicons name="ios-restaurant" size={25} color={tabBarInfo.tintColor} />;
+    }
   }
 });
 
 const MealsFavoritesTabNavigator = createBottomTabNavigator({
   Home: { 
-    screen: MealsNavigator,    
-    navigationOptions: {
-      tabBarIcon: (tabBarInfo) => {
-        return <Ionicons name="ios-restaurant" size={25} color={tabBarInfo.tintColor} />;
-      }
-    }     
+    screen: MealsNavigator,             
   },
   Favorites: {
     screen: FavoritesScreen,
