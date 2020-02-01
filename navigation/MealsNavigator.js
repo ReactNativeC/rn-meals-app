@@ -33,13 +33,14 @@ const MealsNavigator = createStackNavigator({
   
 });
 
-const screenConfig = {
+const routeConfig = {
   Home: { 
     screen: MealsNavigator,   
     navigationOptions: {
       tabBarIcon: (tabBarInfo) => {
         return <Ionicons name="ios-restaurant" size={25} color={tabBarInfo.tintColor} />
-      }
+      }, 
+      tabBarColor: Colors.primaryColor,
     }          
   },
   Favorites: {
@@ -47,15 +48,67 @@ const screenConfig = {
     navigationOptions: {
       tabBarIcon: (tabBarInfo) => {
         return <Ionicons name="ios-star" size={25} color={tabBarInfo.tintColor} />
-      }
+      }, 
+      tabBarColor: Colors.secondaryColor,      
+    }
+  }, 
+  Photos: {
+    screen: FavoritesScreen, 
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="md-photos" size={25} color={tabBarInfo.tintColor} />
+      }, 
+      tabBarColor: '#9400d3'
+    }
+  },
+  Mileage: {
+    screen: FavoritesScreen, 
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="ios-car" size={25} color={tabBarInfo.tintColor} />
+      }, 
+      tabBarColor: '#ff4500'
+    }
+  },
+  Building: {
+    screen: FavoritesScreen, 
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="ios-school" size={25} color={tabBarInfo.tintColor} />
+      }, 
+      tabBarColor: '#ff4598'
+    }
+  }, 
+  Employees: {
+    screen: FavoritesScreen, 
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="ios-person" size={25} color={tabBarInfo.tintColor} />
+      }, 
+      tabBarColor: '#f90390'
+    }
+  }, 
+  Settings: {
+    screen: FavoritesScreen, 
+    navigationOptions: {
+      tabBarIcon: (tabBarInfo) => {
+        return <Ionicons name="md-settings" size={25} color={tabBarInfo.tintColor} />
+      }, 
+      tabBarColor: '#f42982'
     }
   }
 }
 
 const MealsFavoritesTabNavigator = Platform.OS === 'android'
-  ? createMaterialBottomTabNavigator(screenConfig) :
+  ? createMaterialBottomTabNavigator(routeConfig, {
+    activeColor: 'white',
+    shifting: true,
+    barStyle: {
+      
+    }
+  }) :
   createBottomTabNavigator(
-    screenConfig,
+    routeConfig,
     {
       tabBarOptions: {
         activeTintColor: Colors.secondaryColor,
