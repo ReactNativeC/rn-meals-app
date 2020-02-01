@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import MealItem from '../components/MealItem';
 
 const MealList = (props) => {
