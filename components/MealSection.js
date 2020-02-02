@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     margin: 5,
+    
   },
   subtitle: {
     fontFamily: 'OpenSans-Bold',
