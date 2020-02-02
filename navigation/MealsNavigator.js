@@ -5,7 +5,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator, tabBarIcon } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -55,6 +55,7 @@ const routeConfig = {
         return <Ionicons name="ios-restaurant" size={25} color={tabBarInfo.tintColor} />
       },
       tabBarColor: Colors.primaryColor,
+      tabBarLabel: Platform.OS == 'android'? <Text style={{fontFamily: 'OpenSans-Bold'}}>Meals</Text>: 'Meals',
     }
   },
   Favorites: {
@@ -64,6 +65,7 @@ const routeConfig = {
         return <Ionicons name="ios-star" size={25} color={tabBarInfo.tintColor} />
       },
       tabBarColor: Colors.secondaryColor,
+      tabBarLabel: Platform.OS == 'android'? <Text style={{fontFamily: 'OpenSans-Bold'}}>Favorites</Text>: 'Favorites',
     }
   }
 }
@@ -71,15 +73,16 @@ const routeConfig = {
 const MealsFavoritesTabNavigator = Platform.OS === 'android'
   ? createMaterialBottomTabNavigator(routeConfig, {
     activeColor: 'white',
-    shifting: true,
+    shifting: true,    
   }) :
   createBottomTabNavigator(
     routeConfig,
     {
       tabBarOptions: {
-        activeTintColor: Colors.secondaryColor,
+        activeTintColor: Colors.secondaryColor,        
         labelStyle: {
-          fontFamily: 'OpenSans',
+          fontFamily: 'OpenSans-Bold',
+          fontSize: 14,
         },
       },
     }
