@@ -1,15 +1,18 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator, tabBarIcon } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
+
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealsDetailsScreen from '../screens/MealsDetailsScreen';
 import Colors from '../constants/colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import { Ionicons } from '@expo/vector-icons';
-import { Platform } from 'react-native';
+import FiltersScreen from '../screens/FiltersScreen';
 
 const defaultNavOptions = {
   headerStyle: {
@@ -41,6 +44,7 @@ const FavoritesNavigator = createStackNavigator({
     defaultNavigationOptions: defaultNavOptions,
   });
 
+
 const routeConfig = {
   Meals: {
     screen: MealsNavigator,
@@ -66,9 +70,6 @@ const MealsFavoritesTabNavigator = Platform.OS === 'android'
   ? createMaterialBottomTabNavigator(routeConfig, {
     activeColor: 'white',
     shifting: true,
-    barStyle: {
-
-    }
   }) :
   createBottomTabNavigator(
     routeConfig,
@@ -82,4 +83,32 @@ const MealsFavoritesTabNavigator = Platform.OS === 'android'
     }
   );
 
-export default createAppContainer(MealsFavoritesTabNavigator);
+const FiltersStackNavigator = createStackNavigator({
+  Filters: FiltersScreen  
+}, 
+{  
+  defaultNavigationOptions: defaultNavOptions
+});
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavorites: {
+    screen: MealsFavoritesTabNavigator,
+    navigationOptions: {
+      drawerLabel : 'Meals'
+      
+    },
+  }, 
+  Filters: FiltersStackNavigator,
+}, 
+{
+  drawerBackgroundColor: 'floralwhite',
+  contentOptions: {
+    activeTintColor: Colors.secondaryColor,     
+    labelStyle: {
+      fontSize: 'OpenSans-Bold',
+    }
+  }, 
+  
+});
+
+export default createAppContainer(MainNavigator);

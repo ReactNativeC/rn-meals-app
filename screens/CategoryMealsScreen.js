@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button, Platform } from 'react-native';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealList from '../components/MealList';
 
