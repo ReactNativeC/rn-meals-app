@@ -14,7 +14,7 @@ const FiltersScreen = () => {
 FiltersScreen.navigationOptions = navData => {
 return {
   title: 'Filters',
-  headerLeft: (
+  headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item iconName="ios-menu" title="Menu" onPress={() => {
         navData.navigation.toggleDrawer()

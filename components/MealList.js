@@ -10,9 +10,9 @@ const MealList = (props) => {
   };
   const renderMealItem = (itemData) => {
     return (
-      <MealItem
+      <MealItem 
         meal={itemData.item}
-        onMealSelect={goToMealDetails}
+        onMealSelect={goToMealDetails}      
       />
     );
   };

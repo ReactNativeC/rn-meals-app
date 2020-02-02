@@ -10,7 +10,7 @@ const MealSection = (props) => {
       {
         props.data.map((item, index) => {
           return (
-            <View style={styles.stepContainer}>
+            <View style={styles.stepContainer} key={index}>
               <Text style={{ ...globalStyles.bodyText, width: 25 }}>{index + 1}.</Text>
               <Text style={globalStyles.bodyText} numberOfLines={3}>{item}</Text>
             </View>
