@@ -35,8 +35,7 @@ const MealsDetailsScreen = (props) => {
 
 MealsDetailsScreen.navigationOptions = ({navigation}) => {
   return {
-    title: 'Meal Details',
-    headerBackTitle: 'Back',
+    title: 'Meal Details',    
     headerRight: () =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}> 
         <Item title='star' iconName='ios-star' onPress={()=>{}}/>     

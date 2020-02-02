@@ -22,6 +22,9 @@ const defaultNavOptions = {
   headerTitleStyle: {
     fontSize: 24,
     fontFamily: 'OpenSans-Bold'
+  }, 
+  headerBackTitleStyle: {
+    fontFamily: 'OpenSans',
   }
 }
 
@@ -43,7 +46,6 @@ const FavoritesNavigator = createStackNavigator({
   {
     defaultNavigationOptions: defaultNavOptions,
   });
-
 
 const routeConfig = {
   Meals: {
