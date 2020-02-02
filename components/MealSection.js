@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import COLORS from '../constants/colors';
 import globalStyles from '../constants/global-styles';
+import DefaultText from './DefaultText';
 
 const MealSection = (props) => {
   return (
@@ -11,8 +12,8 @@ const MealSection = (props) => {
         props.data.map((item, index) => {
           return (
             <View style={styles.stepContainer} key={index}>
-              <Text style={{ ...globalStyles.bodyText, width: 25 }}>{index + 1}.</Text>
-              <Text style={globalStyles.bodyText} numberOfLines={3}>{item}</Text>
+              <DefaultText style={{width: 25 }}>{index + 1}.</DefaultText>
+              <DefaultText  numberOfLines={3}>{item}</DefaultText>
             </View>
           )
         })

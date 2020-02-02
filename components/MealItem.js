@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, ImageBackground, Platform } from 'r
 import { WorldAlignment } from 'expo/build/AR';
 import { TouchableOpacity, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import globalStyles from '../constants/global-styles';
+import DefaultText from './DefaultText';
 
 const MealItem = (props) => {
   let TouchComponent = TouchableOpacity;
@@ -21,9 +22,9 @@ const MealItem = (props) => {
           </ImageBackground>
         </View>
         <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-          <Text style={globalStyles.bodyText}>{props.meal.duration}m</Text>
-          <Text style={globalStyles.bodyText}>{props.meal.complexity}</Text>
-          <Text style={globalStyles.bodyText}>{props.meal.affordability}</Text>
+          <DefaultText>{props.meal.duration}m</DefaultText>
+          <DefaultText>{props.meal.complexity}</DefaultText>
+          <DefaultText>{props.meal.affordability}</DefaultText>
         </View>
       </View>
     </TouchComponent> 
