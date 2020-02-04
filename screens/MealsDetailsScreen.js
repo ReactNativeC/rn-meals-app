@@ -14,9 +14,10 @@ const MealsDetailsScreen = (props) => {
   const allMeals = useSelector(state => state.meals.meals);
   const selectedMeal = allMeals.find(meal => meal.id === mealId);
   
-  useEffect(() => {
-    navigation.setParams({mealTitle: selectedMeal.title});
-  }, [selectedMeal])
+  //this is not the optimal solution becuase the title only gets set after the component render cycle is completed.
+  // useEffect(() => {
+  //   navigation.setParams({mealTitle: selectedMeal.title});
+  // }, [selectedMeal])
   
   return (
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
@@ -42,10 +43,11 @@ const MealsDetailsScreen = (props) => {
 MealsDetailsScreen.navigationOptions = ({navigation}) => {
   const mealId = navigation.getParam('mealId');
   const mealTitle = navigation.getParam('mealTitle');
+  
   let adjustedTitle = mealTitle;
   if(mealTitle !== undefined && mealTitle.length > 27)
     adjustedTitle = mealTitle.substring(0,27) + "..."
-    
+
   return {
     headerTitle: adjustedTitle,
     headerRight: () =>

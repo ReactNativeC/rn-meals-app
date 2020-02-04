@@ -12,7 +12,7 @@ const MealItem = (props) => {
     TouchComponent = TouchableNativeFeedback;
 
   return (    
-    <TouchComponent onPress={() => { props.onMealSelect(props.meal.id)}}>
+    <TouchComponent onPress={() => { props.onMealSelect(props.meal.id, props.meal.title)}}>
       <View style={styles.mealItem}>
         <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
           <ImageBackground style={styles.bgImage} source={{ uri: props.meal.imageUrl }}>

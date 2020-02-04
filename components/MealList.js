@@ -3,9 +3,10 @@ import { FlatList, StyleSheet } from 'react-native';
 import MealItem from '../components/MealItem';
 
 const MealList = (props) => {
-  const goToMealDetails = (id) => {
+  const goToMealDetails = (id, title) => {
     props.navigation.navigate('MealDetails', {
-      mealId: id
+      mealId: id, 
+      mealTitle: title
     })
   };
   const renderMealItem = (itemData) => {
