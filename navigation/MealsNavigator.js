@@ -5,7 +5,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createBottomTabNavigator, tabBarIcon } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { Platform, Text } from 'react-native';
+import { Platform, Text, Dimensions } from 'react-native';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -20,11 +20,11 @@ const defaultNavOptions = {
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
   headerTitleStyle: {
-    fontSize: 24,
-    fontFamily: 'OpenSans-Bold'
+    fontFamily: 'OpenSans-Bold',  
   }, 
   headerBackTitleStyle: {
     fontFamily: 'OpenSans',
+    fontSize: 14,
   }
 }
 

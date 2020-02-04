@@ -1,17 +1,22 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Text, View, StyleSheet, Image, Dimensions, Button} from 'react-native';
-import { MEALS } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 import COLORS from '../constants/colors';
 import MealSection from '../components/MealSection';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const MealsDetailsScreen = (props) => {
   const {navigation} = props;
   const mealId = navigation.getParam('mealId');
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const allMeals = useSelector(state => state.meals.meals);
+  const selectedMeal = allMeals.find(meal => meal.id === mealId);
+  
+  useEffect(() => {
+    navigation.setParams({mealTitle: selectedMeal.title});
+  }, [selectedMeal])
   
   return (
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
@@ -33,9 +38,16 @@ const MealsDetailsScreen = (props) => {
   );
 };
 
+
 MealsDetailsScreen.navigationOptions = ({navigation}) => {
+  const mealId = navigation.getParam('mealId');
+  const mealTitle = navigation.getParam('mealTitle');
+  let adjustedTitle = mealTitle;
+  if(mealTitle !== undefined && mealTitle.length > 27)
+    adjustedTitle = mealTitle.substring(0,27) + "..."
+    
   return {
-    title: 'Meal Details',    
+    headerTitle: adjustedTitle,
     headerRight: () =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}> 
         <Item title='star' iconName='ios-star' onPress={()=>{}}/>     
