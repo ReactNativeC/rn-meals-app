@@ -15,10 +15,6 @@ const MealsDetailsScreen = (props) => {
   const selectedMeal = allMeals.find(meal => meal.id === mealId);
   const isFavorite = useSelector(state=> state.meals.favoriteMeals.some(meal=> meal.id === mealId));
 
-  //this is not the optimal solution becuase the title only gets set after the component render cycle is completed.
-  // useEffect(() => {
-  //   navigation.setParams({mealTitle: selectedMeal.title});
-  // }, [selectedMeal])
   const dispatch = useDispatch();
 
   const toggleFavoriteHandler = useCallback(() => {
@@ -26,6 +22,7 @@ const MealsDetailsScreen = (props) => {
   },[dispatch, mealId]);
 
   useEffect(() => {
+    console.log("useEffect -> isFavorite=" + isFavorite)
     navigation.setParams({saveFavoriteMeal: toggleFavoriteHandler });   
     navigation.setParams({isFavorite: isFavorite});      
   }, [toggleFavoriteHandler, isFavorite])
@@ -60,9 +57,9 @@ MealsDetailsScreen.navigationOptions = ({navigation}) => {
   let adjustedTitle = mealTitle;
   if(mealTitle !== undefined && mealTitle.length > 27)
     adjustedTitle = mealTitle.substring(0,27) + "..."
-
+  console.log("navigationOptions -> isFavorite=" + isFavorite)
   return {
-    headerTitle: adjustedTitle,
+    headerTitle: adjustedTitle,    
     headerRight: () => {      
         return (
           <HeaderButtons HeaderButtonComponent={HeaderButton}> 
