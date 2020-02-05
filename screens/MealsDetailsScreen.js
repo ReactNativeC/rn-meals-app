@@ -1,12 +1,13 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Text, View, StyleSheet, Image, Dimensions, Button} from 'react-native';
+import { View, StyleSheet, Image, Dimensions, Button} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Colors from '../constants/colors';
 import MealSection from '../components/MealSection';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import { toggleFavorite } from '../store/actions/meals';
+import DefaultText from '../components/DefaultText';
 
 const MealsDetailsScreen = (props) => {
   const {navigation} = props;
@@ -36,9 +37,17 @@ const MealsDetailsScreen = (props) => {
           resizeMode='contain'
         />
       </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{selectedMeal.title}</Text>
+      {(selectedMeal.isVegetarian || selectedMeal.isGlutenFree || selectedMeal.isLactoseFree ||selectedMeal.isVegan) && (
+      <View style={styles.mealAdditionalInfo}>      
+        {selectedMeal.isVegetarian && (<View style={styles.mealInfoContainer}><DefaultText style={styles.mealInfo}>Vegetarian</DefaultText></View>)}
+        {selectedMeal.isGlutenFree && (<View style={styles.mealInfoContainer}><DefaultText style={styles.mealInfo}>Gluten Free</DefaultText></View>)}        
+        {selectedMeal.isLactoseFree && (<View style={styles.mealInfoContainer}><DefaultText style={styles.mealInfo}>Lactose Free</DefaultText></View>)}                
+        {selectedMeal.isVegan && (<View style={styles.mealInfoContainer}><DefaultText style={styles.mealInfo}>Vegan</DefaultText></View>)}         
       </View>
+      )}
+      <View style={styles.titleContainer}>
+        <DefaultText style={styles.title}>{selectedMeal.title}</DefaultText>
+      </View> 
       <View style={styles.detailsContainer}>
         <MealSection style={styles.mealSection} headerCaption='Ingredients' data={selectedMeal.ingredients} />
         <MealSection style={styles.mealSection} headerCaption='Recipe' data={selectedMeal.steps} />
@@ -76,13 +85,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     alignItems: 'center',
-    height: Dimensions.get('window').height / 3,
-    marginBottom: 10,
+    height: Dimensions.get('window').height / 3,    
   },
   titleContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
+    justifyContent: 'center',   
   }, 
   ingredients: {
     alignItems: 'flex-start',  
@@ -98,9 +105,30 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Bold', 
     fontSize: 20,
     color: Colors.primaryColor,
+    marginBottom: 20,
   }, 
   mealSection: {
     marginBottom: 10,
+  },
+  mealAdditionalInfo: {
+    flexDirection: 'row',
+    width:'100%', 
+    justifyContent: 'center',
+    flexWrap: "wrap",    
+    marginBottom: 15,    
+    marginTop: 5,
+  }, 
+  mealInfoContainer: {   
+    padding: 7,    
+    marginRight: 10,   
+    marginBottom: 10, 
+    backgroundColor: '#c71585', 
+    borderRadius: 10,
+    
+  }, 
+  mealInfo: {
+    fontFamily: 'OpenSans-Bold', 
+    color: 'white',
   }
 });
 
