@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text, View, StyleSheet, Image, Dimensions, Button} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import COLORS from '../constants/colors';
+import Colors from '../constants/colors';
 import MealSection from '../components/MealSection';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
@@ -64,20 +64,11 @@ MealsDetailsScreen.navigationOptions = ({navigation}) => {
   return {
     headerTitle: adjustedTitle,
     headerRight: () => {      
-      if(isFavorite)
         return (
           <HeaderButtons HeaderButtonComponent={HeaderButton}> 
-            <Item title='star' iconName='ios-star' onPress={toggleFavorite}/>        
+            <Item title='star' iconName={isFavorite? 'ios-star': 'ios-star-outline'} onPress={toggleFavorite}/>        
           </HeaderButtons>
-        )
-      else 
-      {
-        return (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}> 
-            <Item title='star' iconName='ios-star-outline' onPress={toggleFavorite}/>        
-          </HeaderButtons>
-        )
-      }
+        )    
     }
   }
 }
@@ -109,7 +100,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'OpenSans-Bold', 
     fontSize: 20,
-    color: COLORS.primaryColor,
+    color: Colors.primaryColor,
   }, 
   mealSection: {
     marginBottom: 10,
