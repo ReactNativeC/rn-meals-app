@@ -13,7 +13,8 @@ const MealsDetailsScreen = (props) => {
   const mealId = navigation.getParam('mealId');
   const allMeals = useSelector(state => state.meals.meals);
   const selectedMeal = allMeals.find(meal => meal.id === mealId);
-  
+  const isFavorite = useSelector(state=> state.meals.favoriteMeals.some(meal=> meal.id === mealId));
+
   //this is not the optimal solution becuase the title only gets set after the component render cycle is completed.
   // useEffect(() => {
   //   navigation.setParams({mealTitle: selectedMeal.title});
@@ -22,12 +23,12 @@ const MealsDetailsScreen = (props) => {
 
   const toggleFavoriteHandler = useCallback(() => {
     dispatch(toggleFavorite(mealId));
-    console.log("action dispatched")
   },[dispatch, mealId]);
 
   useEffect(() => {
-    navigation.setParams({saveFavoriteMeal: toggleFavoriteHandler });         
-  }, [toggleFavoriteHandler])
+    navigation.setParams({saveFavoriteMeal: toggleFavoriteHandler });   
+    navigation.setParams({isFavorite: isFavorite});      
+  }, [toggleFavoriteHandler, isFavorite])
   
   return (
     <ScrollView style={styles.screen} showsVerticalScrollIndicator={false}>
@@ -54,17 +55,30 @@ MealsDetailsScreen.navigationOptions = ({navigation}) => {
   const mealId = navigation.getParam('mealId');
   const mealTitle = navigation.getParam('mealTitle');
   const toggleFavorite = navigation.getParam('saveFavoriteMeal');
-
+  const isFavorite = navigation.getParam('isFavorite');
+    
   let adjustedTitle = mealTitle;
   if(mealTitle !== undefined && mealTitle.length > 27)
     adjustedTitle = mealTitle.substring(0,27) + "..."
 
   return {
     headerTitle: adjustedTitle,
-    headerRight: () =>
-      <HeaderButtons HeaderButtonComponent={HeaderButton}> 
-        <Item title='star' iconName='ios-star' onPress={toggleFavorite}/>        
-      </HeaderButtons>
+    headerRight: () => {      
+      if(isFavorite)
+        return (
+          <HeaderButtons HeaderButtonComponent={HeaderButton}> 
+            <Item title='star' iconName='ios-star' onPress={toggleFavorite}/>        
+          </HeaderButtons>
+        )
+      else 
+      {
+        return (
+          <HeaderButtons HeaderButtonComponent={HeaderButton}> 
+            <Item title='star' iconName='ios-star-outline' onPress={toggleFavorite}/>        
+          </HeaderButtons>
+        )
+      }
+    }
   }
 }
 
