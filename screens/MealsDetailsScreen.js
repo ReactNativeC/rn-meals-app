@@ -23,7 +23,7 @@ const MealsDetailsScreen = (props) => {
   },[dispatch, mealId]);
 
   useEffect(() => {
-    console.log("useEffect -> isFavorite=" + isFavorite)
+ 
     navigation.setParams({saveFavoriteMeal: toggleFavoriteHandler });   
     navigation.setParams({isFavorite: isFavorite});      
   }, [toggleFavoriteHandler, isFavorite])
@@ -66,7 +66,7 @@ MealsDetailsScreen.navigationOptions = ({navigation}) => {
   let adjustedTitle = mealTitle;
   if(mealTitle !== undefined && mealTitle.length > 27)
     adjustedTitle = mealTitle.substring(0,27) + "..."
-  console.log("navigationOptions -> isFavorite=" + isFavorite)
+      
   return {
     headerTitle: adjustedTitle,    
     headerRight: () => {      
